@@ -20,5 +20,21 @@ module ShippityDooDah
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.assets.initialize_on_precompile = false
+
+    config.generators do |g| 
+      g.test_framework :rspec, 
+        :fixtures => true, 
+        :view_specs => false, 
+        :helper_specs => false, 
+        :routing_specs => false, 
+        :controller_specs => true, 
+        :request_specs => true 
+      g.fixture_replacement :factory_girl, :dir => "spec/factories" 
+    end
+
+    config.filepicker_rails.api_key =  ENV["FILEPICKER_API_KEY"]
+
+    config.assets.paths << Rails.root.join("app", "assets", "templates")
+
   end
 end
